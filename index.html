@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hold That Line</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #fffde8;
+            padding: 20px;
+            margin: 0;
+        }
+        
+        h1 {
+            color: #FFA500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        
+        .game-info {
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            width: 375px;
+            text-align: center;
+        }
+        
+        .player-turn {
+            font-weight: bold;
+            font-size: 18px;
+            color: #333;
+            margin: 10px 0;
+        }
+        
+        .game-container {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        
+        #game-canvas {
+            display: block;
+            background: white;
+            border-radius: 8px;
+        }
+        
+        button {
+            padding: 10px 20px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background: #45a049;
+        }
+        /* Rules Button and Panel */
+        
+        .rules-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 14px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            z-index: 1000;
+        }
+        
+        .rules-panel {
+            position: fixed;
+            top: 70px;
+            right: 20px;
+            width: 260px;
+            max-height: 300px;
+            overflow-y: auto;
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+            z-index: 999;
+            transition: all 0.3s ease;
+        }
+        
+        .rules-panel.hidden {
+            display: none;
+        }
+        
+        .rules-panel h2 {
+            margin-top: 0;
+            font-size: 20px;
+            color: #333;
+        }
+        
+        .rules-panel ul {
+            padding-left: 18px;
+            font-size: 15px;
+            color: #555;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Hold That Line</h1>
+
+    <div class="game-info">
+        <div class="player-turn" id="player-turn">Player 1's Turn</div>
+        <div>Players: 2 </div>
+    </div>
+
+    <div class="game-container">
+        <canvas id="game-canvas" width="400" height="400"></canvas>
+    </div>
+
+    <button id="reset-btn">Reset Game</button>
+
+    <!-- Toggle Button for Rules -->
+    <button id="rules-toggle" class="rules-btn">❓ Rules</button>
+
+    <!-- Hidden Panel for Rules -->
+    <div id="rules-panel" class="rules-panel hidden">
+        <h2>Game Rules</h2>
+        <ul>
+            <li>Player 1 starts by connecting any two dots</li>
+            <li>Players alternate turns, extending from line ends</li>
+            <li>Lines can go in any direction (including diagonal)</li>
+            <li>No crossing existing lines</li>
+            <li>No loops allowed (loop = immediate loss)</li>
+            <li>If no valid move is left, other player wins</li>
+        </ul>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Show/hide rules panel when button is clicked
+        document.addEventListener('DOMContentLoaded', function() {
+            const rulesBtn = document.getElementById('rules-toggle');
+            const rulesPanel = document.getElementById('rules-panel');
+
+            rulesBtn.addEventListener('click', () => {
+                rulesPanel.classList.toggle('hidden');
+            });
+        });
+    </script>
+</body>
