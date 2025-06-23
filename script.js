@@ -236,15 +236,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 const opponent = currentPlayer === 1 ? 2 : 1;
 
-                currentPlayer = opponent;
-
                 if (!hasValidMoves()) {
-                    playerTurnDisplay.textContent = `Player ${currentPlayer} has no valid moves. Player ${opponent} wins!`;
+                    playerTurnDisplay.textContent = `Player ${currentPlayer} made the last move. Player ${currentPlayer} wins!`;
                     gameOver = true;
                     drawBoard();
                     return;
                 }
 
+                currentPlayer = currentPlayer === 1 ? 2 : 1;
                 playerTurnDisplay.textContent = `Player ${currentPlayer}'s Turn`;
                 drawBoard();
 
